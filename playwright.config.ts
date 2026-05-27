@@ -16,6 +16,9 @@ try {
 
 const browser = (String(env.browser ?? "chromium")) as "chromium" | "firefox" | "webkit";
 
+// Disable web security and sandbox restrictions in CI environments
+const isCI = Boolean(process.env.CI);
+
 function browserDevice(b: "chromium" | "firefox" | "webkit") {
   switch (b) {
     case "firefox": return { ...devices["Desktop Firefox"] };
@@ -37,6 +40,17 @@ export default defineConfig({
     video:         (String(env.video        ?? "retain-on-failure")) as "off" | "on" | "retain-on-failure" | "on-first-retry",
     screenshot:    (String(env.screenshot   ?? "only-on-failure"))  as "off" | "on" | "only-on-failure",
     actionTimeout: Number(env.actionTimeout ?? 10000),
+    launchOptions: {
+      args: isCI
+        ? [
+            "--disable-web-security",
+            "--no-sandbox",
+            "--disable-setuid-sandbox",
+            "--disable-dev-shm-usage",
+            "--disable-gpu",
+          ]
+        : [],
+    },
   },
   projects: [
     { name: browser, use: browserDevice(browser) },
