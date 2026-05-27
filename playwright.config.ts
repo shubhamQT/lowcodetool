@@ -48,6 +48,8 @@ export default defineConfig({
             "--disable-setuid-sandbox",
             "--disable-dev-shm-usage",
             "--disable-gpu",
+            "--ignore-certificate-errors", 
+            "--ignore-certificate-errors-skip-list"
           ]
         : [],
     },
