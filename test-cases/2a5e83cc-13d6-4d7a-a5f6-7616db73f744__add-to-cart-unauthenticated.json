@@ -1,6 +1,6 @@
 {
   "id": "add-to-cart-unauthenticated",
-  "testPlanId": "e8d8b4d1-a771-45f5-8ae4-f0e8af4fc1aa",
+  "testPlanId": "2a5e83cc-13d6-4d7a-a5f6-7616db73f744",
   "requirementId": "4eb80c5c-67e3-476f-84bb-f0f87c047b29",
   "suiteName": "shubham-amazon-negative",
   "case": {
@@ -9,46 +9,48 @@
     "priority": "P1",
     "platforms": [
       "chrome",
-      "firefox"
+      "firefox",
+      "safari",
+      "edge"
     ],
     "preconditions": [],
     "steps": [
       {
-        "id": "open-homepage",
+        "id": "step1",
         "action": "openUrl",
-        "targetDescription": "Navigate to Amazon India homepage",
+        "targetDescription": "Open Amazon India homepage in incognito/private mode",
         "value": "https://www.amazon.in/"
       },
       {
-        "id": "fill-search-bar",
+        "id": "step2",
         "action": "fill",
-        "targetDescription": "Enter product name in search bar",
+        "targetDescription": "Search for samsung s26 ultra",
         "locatorHint": "input#twotabsearchtextbox",
         "value": "samsung s26 ultra"
       },
       {
-        "id": "tap-search-button",
+        "id": "step3",
         "action": "tap",
-        "targetDescription": "Click the search button",
+        "targetDescription": "Click search button",
         "locatorHint": "input#nav-search-submit-button"
       },
       {
-        "id": "tap-first-product",
+        "id": "step4",
         "action": "tap",
-        "targetDescription": "Click the first product in search results",
-        "locatorHint": ".s-main-slot .s-result-item[data-index='1'] h2 a"
+        "targetDescription": "Click on first product in results",
+        "locatorHint": "div.s-main-slot div[data-index='1'] h2 a"
       },
       {
-        "id": "tap-add-to-cart",
+        "id": "step5",
         "action": "tap",
         "targetDescription": "Click Add to Cart",
-        "locatorHint": "#add-to-cart-button"
+        "locatorHint": "input#add-to-cart-button"
       },
       {
-        "id": "assert-login-prompt",
+        "id": "step6",
         "action": "assertVisible",
         "targetDescription": "Check for login prompt or guest checkout option",
-        "locatorHint": "#authportal-main-section, .a-box-inner h1"
+        "locatorHint": "form#ap_signin_form, div#guest-checkout"
       }
     ],
     "tags": [

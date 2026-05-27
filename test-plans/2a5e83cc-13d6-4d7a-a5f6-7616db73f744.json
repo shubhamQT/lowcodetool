@@ -1,15 +1,15 @@
 {
-  "id": "e8d8b4d1-a771-45f5-8ae4-f0e8af4fc1aa",
+  "id": "2a5e83cc-13d6-4d7a-a5f6-7616db73f744",
   "requirementId": "4eb80c5c-67e3-476f-84bb-f0f87c047b29",
   "model": "gpt-4.1",
-  "createdAt": "2026-05-27T11:52:50.417Z",
+  "createdAt": "2026-05-27T12:44:46.898Z",
   "plan": {
     "version": 1,
     "suiteName": "shubham-amazon-negative",
     "cases": [
       {
-        "id": "empty-search-input",
-        "title": "Search with empty input should show error or no results",
+        "id": "empty-search-query",
+        "title": "Search with empty query should show error or no results",
         "priority": "P0",
         "platforms": [
           "chrome",
@@ -20,28 +20,28 @@
         "preconditions": [],
         "steps": [
           {
-            "id": "open-homepage",
+            "id": "step1",
             "action": "openUrl",
-            "targetDescription": "Navigate to Amazon India homepage",
+            "targetDescription": "Open Amazon India homepage",
             "value": "https://www.amazon.in/"
           },
           {
-            "id": "clear-search-bar",
-            "action": "clear",
-            "targetDescription": "Clear the search bar",
+            "id": "step2",
+            "action": "fill",
+            "targetDescription": "Leave search bar empty",
             "locatorHint": "input#twotabsearchtextbox"
           },
           {
-            "id": "tap-search-button",
+            "id": "step3",
             "action": "tap",
-            "targetDescription": "Click the search button",
+            "targetDescription": "Click search button",
             "locatorHint": "input#nav-search-submit-button"
           },
           {
-            "id": "assert-no-results",
-            "action": "assertContainsText",
-            "targetDescription": "Check for error or no results message",
-            "locatorHint": "#search .s-no-results-section, .a-row.a-spacing-top-base",
+            "id": "step4",
+            "action": "assertText",
+            "targetDescription": "Check for error message or no results text",
+            "locatorHint": "div.s-no-results-section, span.a-color-state",
             "assertion": "No results for"
           }
         ],
@@ -56,35 +56,37 @@
         "priority": "P1",
         "platforms": [
           "chrome",
-          "firefox"
+          "firefox",
+          "safari",
+          "edge"
         ],
         "preconditions": [],
         "steps": [
           {
-            "id": "open-homepage",
+            "id": "step1",
             "action": "openUrl",
-            "targetDescription": "Navigate to Amazon India homepage",
+            "targetDescription": "Open Amazon India homepage",
             "value": "https://www.amazon.in/"
           },
           {
-            "id": "fill-invalid-product",
+            "id": "step2",
             "action": "fill",
-            "targetDescription": "Enter invalid product name in search bar",
+            "targetDescription": "Enter gibberish in search bar",
             "locatorHint": "input#twotabsearchtextbox",
-            "value": "asdkjhasdkjhqweqwe123123"
+            "value": "42425346576876869797979798685"
           },
           {
-            "id": "tap-search-button",
+            "id": "step3",
             "action": "tap",
-            "targetDescription": "Click the search button",
+            "targetDescription": "Click search button",
             "locatorHint": "input#nav-search-submit-button"
           },
           {
-            "id": "assert-no-results",
-            "action": "assertContainsText",
+            "id": "step4",
+            "action": "assertText",
             "targetDescription": "Check for no results message",
-            "locatorHint": "#search .s-no-results-section, .a-row.a-spacing-top-base",
-            "assertion": "No results for"
+            "locatorHint": "div.s-no-results-section, span.a-color-state",
+            "assertion": "did not match any products"
           }
         ],
         "tags": [
@@ -94,49 +96,52 @@
       },
       {
         "id": "add-to-cart-without-variation",
-        "title": "Attempt to add to cart without selecting required variation",
+        "title": "Add to cart without selecting required variation should show error",
         "priority": "P0",
         "platforms": [
-          "chrome"
+          "chrome",
+          "firefox",
+          "safari",
+          "edge"
         ],
         "preconditions": [],
         "steps": [
           {
-            "id": "open-homepage",
+            "id": "step1",
             "action": "openUrl",
-            "targetDescription": "Navigate to Amazon India homepage",
+            "targetDescription": "Open Amazon India homepage",
             "value": "https://www.amazon.in/"
           },
           {
-            "id": "fill-search-bar",
+            "id": "step2",
             "action": "fill",
-            "targetDescription": "Enter product name in search bar",
+            "targetDescription": "Search for a product with variations",
             "locatorHint": "input#twotabsearchtextbox",
-            "value": "samsung s26 ultra"
+            "value": "t-shirt"
           },
           {
-            "id": "tap-search-button",
+            "id": "step3",
             "action": "tap",
-            "targetDescription": "Click the search button",
+            "targetDescription": "Click search button",
             "locatorHint": "input#nav-search-submit-button"
           },
           {
-            "id": "tap-first-product",
+            "id": "step4",
             "action": "tap",
-            "targetDescription": "Click the first product in search results",
-            "locatorHint": ".s-main-slot .s-result-item[data-index='1'] h2 a"
+            "targetDescription": "Click on first product in results",
+            "locatorHint": "div.s-main-slot div[data-index='1'] h2 a"
           },
           {
-            "id": "tap-add-to-cart",
+            "id": "step5",
             "action": "tap",
-            "targetDescription": "Click Add to Cart without selecting required variation",
-            "locatorHint": "#add-to-cart-button"
+            "targetDescription": "Click Add to Cart without selecting size/color",
+            "locatorHint": "input#add-to-cart-button"
           },
           {
-            "id": "assert-variation-error",
+            "id": "step6",
             "action": "assertVisible",
-            "targetDescription": "Check for error message about selecting variation",
-            "locatorHint": "#variation-error, .a-alert-content"
+            "targetDescription": "Check for variation selection error message",
+            "locatorHint": "div#variation_error_message"
           }
         ],
         "tags": [
@@ -150,46 +155,48 @@
         "priority": "P1",
         "platforms": [
           "chrome",
-          "firefox"
+          "firefox",
+          "safari",
+          "edge"
         ],
         "preconditions": [],
         "steps": [
           {
-            "id": "open-homepage",
+            "id": "step1",
             "action": "openUrl",
-            "targetDescription": "Navigate to Amazon India homepage",
+            "targetDescription": "Open Amazon India homepage in incognito/private mode",
             "value": "https://www.amazon.in/"
           },
           {
-            "id": "fill-search-bar",
+            "id": "step2",
             "action": "fill",
-            "targetDescription": "Enter product name in search bar",
+            "targetDescription": "Search for samsung s26 ultra",
             "locatorHint": "input#twotabsearchtextbox",
             "value": "samsung s26 ultra"
           },
           {
-            "id": "tap-search-button",
+            "id": "step3",
             "action": "tap",
-            "targetDescription": "Click the search button",
+            "targetDescription": "Click search button",
             "locatorHint": "input#nav-search-submit-button"
           },
           {
-            "id": "tap-first-product",
+            "id": "step4",
             "action": "tap",
-            "targetDescription": "Click the first product in search results",
-            "locatorHint": ".s-main-slot .s-result-item[data-index='1'] h2 a"
+            "targetDescription": "Click on first product in results",
+            "locatorHint": "div.s-main-slot div[data-index='1'] h2 a"
           },
           {
-            "id": "tap-add-to-cart",
+            "id": "step5",
             "action": "tap",
             "targetDescription": "Click Add to Cart",
-            "locatorHint": "#add-to-cart-button"
+            "locatorHint": "input#add-to-cart-button"
           },
           {
-            "id": "assert-login-prompt",
+            "id": "step6",
             "action": "assertVisible",
             "targetDescription": "Check for login prompt or guest checkout option",
-            "locatorHint": "#authportal-main-section, .a-box-inner h1"
+            "locatorHint": "form#ap_signin_form, div#guest-checkout"
           }
         ],
         "tags": [
@@ -200,67 +207,70 @@
       {
         "id": "invalid-quantity-update",
         "title": "Update cart with invalid quantity should show error",
-        "priority": "P2",
+        "priority": "P1",
         "platforms": [
-          "chrome"
+          "chrome",
+          "firefox",
+          "safari",
+          "edge"
         ],
         "preconditions": [],
         "steps": [
           {
-            "id": "open-homepage",
+            "id": "step1",
             "action": "openUrl",
-            "targetDescription": "Navigate to Amazon India homepage",
+            "targetDescription": "Open Amazon India homepage",
             "value": "https://www.amazon.in/"
           },
           {
-            "id": "fill-search-bar",
+            "id": "step2",
             "action": "fill",
-            "targetDescription": "Enter product name in search bar",
+            "targetDescription": "Search for samsung s26 ultra",
             "locatorHint": "input#twotabsearchtextbox",
             "value": "samsung s26 ultra"
           },
           {
-            "id": "tap-search-button",
+            "id": "step3",
             "action": "tap",
-            "targetDescription": "Click the search button",
+            "targetDescription": "Click search button",
             "locatorHint": "input#nav-search-submit-button"
           },
           {
-            "id": "tap-first-product",
+            "id": "step4",
             "action": "tap",
-            "targetDescription": "Click the first product in search results",
-            "locatorHint": ".s-main-slot .s-result-item[data-index='1'] h2 a"
+            "targetDescription": "Click on first product in results",
+            "locatorHint": "div.s-main-slot div[data-index='1'] h2 a"
           },
           {
-            "id": "tap-add-to-cart",
+            "id": "step5",
             "action": "tap",
             "targetDescription": "Click Add to Cart",
-            "locatorHint": "#add-to-cart-button"
+            "locatorHint": "input#add-to-cart-button"
           },
           {
-            "id": "tap-cart-icon",
+            "id": "step6",
             "action": "tap",
-            "targetDescription": "Click cart icon to go to cart page",
-            "locatorHint": "#nav-cart"
+            "targetDescription": "Go to cart page",
+            "locatorHint": "a#nav-cart"
           },
           {
-            "id": "fill-invalid-quantity",
+            "id": "step7",
             "action": "fill",
-            "targetDescription": "Enter invalid quantity (e.g., 0 or -1)",
-            "locatorHint": "input[name='quantityBox']",
+            "targetDescription": "Enter invalid quantity (e.g., 0 or 9999)",
+            "locatorHint": "input[name='quantity']",
             "value": "0"
           },
           {
-            "id": "tap-update-button",
+            "id": "step8",
             "action": "tap",
             "targetDescription": "Click update button",
-            "locatorHint": "input[name='submit.update-quantity']"
+            "locatorHint": "input[name='update-cart-button']"
           },
           {
-            "id": "assert-quantity-error",
+            "id": "step9",
             "action": "assertVisible",
-            "targetDescription": "Check for error message about invalid quantity",
-            "locatorHint": ".a-alert-content, .sc-update-quantity-alert"
+            "targetDescription": "Check for quantity error message",
+            "locatorHint": "div.a-alert-content"
           }
         ],
         "tags": [

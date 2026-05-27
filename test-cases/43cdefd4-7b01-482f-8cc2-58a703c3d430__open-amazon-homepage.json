@@ -1,0 +1,36 @@
+{
+  "id": "open-amazon-homepage",
+  "testPlanId": "43cdefd4-7b01-482f-8cc2-58a703c3d430",
+  "requirementId": "4eb80c5c-67e3-476f-84bb-f0f87c047b29",
+  "suiteName": "shubham-amazon-smoke",
+  "case": {
+    "id": "open-amazon-homepage",
+    "title": "Open Amazon India homepage and verify visibility",
+    "priority": "P0",
+    "platforms": [
+      "chrome",
+      "firefox",
+      "safari",
+      "edge"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "step-1",
+        "action": "openUrl",
+        "targetDescription": "Navigate to Amazon India homepage",
+        "value": "https://www.amazon.in/"
+      },
+      {
+        "id": "step-2",
+        "action": "assertVisible",
+        "targetDescription": "Verify Amazon logo is visible",
+        "locatorHint": "aria-label=Amazon"
+      }
+    ],
+    "tags": [
+      "@smoke",
+      "@regression"
+    ]
+  }
+}
