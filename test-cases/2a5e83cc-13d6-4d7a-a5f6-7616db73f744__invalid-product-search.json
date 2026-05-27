@@ -26,7 +26,7 @@
         "action": "fill",
         "targetDescription": "Enter gibberish in search bar",
         "locatorHint": "input#twotabsearchtextbox",
-        "value": "asdkjhasdkjhqweqwe"
+        "value": "42425346576876869797979798685"
       },
       {
         "id": "step3",
