@@ -1,0 +1,65 @@
+{
+  "id": "search-result-details",
+  "testPlanId": "a379c382-ed2f-42f1-a472-81540563fdd3",
+  "requirementId": "4eb80c5c-67e3-476f-84bb-f0f87c047b29",
+  "suiteName": "shubham-amazon-e2e",
+  "case": {
+    "id": "search-result-details",
+    "title": "User can view product details in search results",
+    "priority": "P1",
+    "platforms": [
+      "chrome",
+      "firefox"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "step1",
+        "action": "openUrl",
+        "targetDescription": "Open Amazon India homepage",
+        "value": "https://www.amazon.in/"
+      },
+      {
+        "id": "step2",
+        "action": "fill",
+        "targetDescription": "Enter product name in search bar",
+        "locatorHint": "id=twotabsearchtextbox",
+        "value": "samsung s26 ultra"
+      },
+      {
+        "id": "step3",
+        "action": "tap",
+        "targetDescription": "Click search button",
+        "locatorHint": "id=nav-search-submit-button"
+      },
+      {
+        "id": "step4",
+        "action": "assertVisible",
+        "targetDescription": "Product name is visible in results",
+        "locatorHint": "data-component-type=s-search-result"
+      },
+      {
+        "id": "step5",
+        "action": "assertVisible",
+        "targetDescription": "Product price is visible in results",
+        "locatorHint": ".a-price"
+      },
+      {
+        "id": "step6",
+        "action": "assertVisible",
+        "targetDescription": "Product rating is visible in results",
+        "locatorHint": ".a-icon-star-small"
+      },
+      {
+        "id": "step7",
+        "action": "assertVisible",
+        "targetDescription": "Product image is visible in results",
+        "locatorHint": ".s-image"
+      }
+    ],
+    "tags": [
+      "@e2e",
+      "@regression"
+    ]
+  }
+}

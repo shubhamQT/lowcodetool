@@ -1,0 +1,71 @@
+{
+  "id": "cart-remove-product",
+  "testPlanId": "a379c382-ed2f-42f1-a472-81540563fdd3",
+  "requirementId": "4eb80c5c-67e3-476f-84bb-f0f87c047b29",
+  "suiteName": "shubham-amazon-e2e",
+  "case": {
+    "id": "cart-remove-product",
+    "title": "User can remove product from cart",
+    "priority": "P1",
+    "platforms": [
+      "chrome",
+      "firefox"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "step1",
+        "action": "openUrl",
+        "targetDescription": "Open Amazon India homepage",
+        "value": "https://www.amazon.in/"
+      },
+      {
+        "id": "step2",
+        "action": "fill",
+        "targetDescription": "Enter product name in search bar",
+        "locatorHint": "id=twotabsearchtextbox",
+        "value": "samsung s26 ultra"
+      },
+      {
+        "id": "step3",
+        "action": "tap",
+        "targetDescription": "Click search button",
+        "locatorHint": "id=nav-search-submit-button"
+      },
+      {
+        "id": "step4",
+        "action": "tap",
+        "targetDescription": "Click first product in results",
+        "locatorHint": "data-component-type=s-search-result"
+      },
+      {
+        "id": "step5",
+        "action": "tap",
+        "targetDescription": "Click Add to Cart button",
+        "locatorHint": "id=add-to-cart-button"
+      },
+      {
+        "id": "step6",
+        "action": "tap",
+        "targetDescription": "Go to cart page",
+        "locatorHint": "id=nav-cart"
+      },
+      {
+        "id": "step7",
+        "action": "tap",
+        "targetDescription": "Click delete/remove button for product",
+        "locatorHint": "input[value='Delete']"
+      },
+      {
+        "id": "step8",
+        "action": "assertHidden",
+        "targetDescription": "Product is removed from cart",
+        "locatorHint": "data-name=samsung s26 ultra"
+      }
+    ],
+    "tags": [
+      "@e2e",
+      "@regression"
+    ]
+  }
+}
