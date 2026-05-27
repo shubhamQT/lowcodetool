@@ -1,0 +1,49 @@
+{
+  "id": "empty-search-input",
+  "testPlanId": "e8d8b4d1-a771-45f5-8ae4-f0e8af4fc1aa",
+  "requirementId": "4eb80c5c-67e3-476f-84bb-f0f87c047b29",
+  "suiteName": "shubham-amazon-negative",
+  "case": {
+    "id": "empty-search-input",
+    "title": "Search with empty input should show error or no results",
+    "priority": "P0",
+    "platforms": [
+      "chrome",
+      "firefox",
+      "safari",
+      "edge"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "open-homepage",
+        "action": "openUrl",
+        "targetDescription": "Navigate to Amazon India homepage",
+        "value": "https://www.amazon.in/"
+      },
+      {
+        "id": "clear-search-bar",
+        "action": "clear",
+        "targetDescription": "Clear the search bar",
+        "locatorHint": "input#twotabsearchtextbox"
+      },
+      {
+        "id": "tap-search-button",
+        "action": "tap",
+        "targetDescription": "Click the search button",
+        "locatorHint": "input#nav-search-submit-button"
+      },
+      {
+        "id": "assert-no-results",
+        "action": "assertContainsText",
+        "targetDescription": "Check for error or no results message",
+        "locatorHint": "#search .s-no-results-section, .a-row.a-spacing-top-base",
+        "assertion": "No results for"
+      }
+    ],
+    "tags": [
+      "@negative",
+      "@regression"
+    ]
+  }
+}
