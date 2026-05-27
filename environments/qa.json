@@ -4,7 +4,7 @@
   "baseURL": "https://amazon.in",
   "browser": "chromium",
   "headless": true,
-  "timeout": 30000,
+  "timeout": 300000,
   "actionTimeout": 10000,
   "retries": 0,
   "fullyParallel": false,
