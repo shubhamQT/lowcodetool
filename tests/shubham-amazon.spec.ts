@@ -5,7 +5,7 @@ test('Search for a non-existent product should show no results', { tag: ["@negat
     await page.goto('https://www.amazon.in/');
   });
   await test.step('Fill — Enter gibberish in search bar — (input#twotabsearchtextbox)', async () => {
-    await cartPage.fillFieldKeywords('42425346576876869797979798685');
+    await cartPage.fillFieldKeywords('!12312312');
   });
   await test.step('Click — Click search button — (input#nav-search-submit-button)', async () => {
     await homePage.clickNavSearchSubmit();
