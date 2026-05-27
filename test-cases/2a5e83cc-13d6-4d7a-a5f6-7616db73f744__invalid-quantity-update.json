@@ -1,0 +1,80 @@
+{
+  "id": "invalid-quantity-update",
+  "testPlanId": "2a5e83cc-13d6-4d7a-a5f6-7616db73f744",
+  "requirementId": "4eb80c5c-67e3-476f-84bb-f0f87c047b29",
+  "suiteName": "shubham-amazon-negative",
+  "case": {
+    "id": "invalid-quantity-update",
+    "title": "Update cart with invalid quantity should show error",
+    "priority": "P1",
+    "platforms": [
+      "chrome",
+      "firefox",
+      "safari",
+      "edge"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "step1",
+        "action": "openUrl",
+        "targetDescription": "Open Amazon India homepage",
+        "value": "https://www.amazon.in/"
+      },
+      {
+        "id": "step2",
+        "action": "fill",
+        "targetDescription": "Search for samsung s26 ultra",
+        "locatorHint": "input#twotabsearchtextbox",
+        "value": "samsung s26 ultra"
+      },
+      {
+        "id": "step3",
+        "action": "tap",
+        "targetDescription": "Click search button",
+        "locatorHint": "input#nav-search-submit-button"
+      },
+      {
+        "id": "step4",
+        "action": "tap",
+        "targetDescription": "Click on first product in results",
+        "locatorHint": "div.s-main-slot div[data-index='1'] h2 a"
+      },
+      {
+        "id": "step5",
+        "action": "tap",
+        "targetDescription": "Click Add to Cart",
+        "locatorHint": "input#add-to-cart-button"
+      },
+      {
+        "id": "step6",
+        "action": "tap",
+        "targetDescription": "Go to cart page",
+        "locatorHint": "a#nav-cart"
+      },
+      {
+        "id": "step7",
+        "action": "fill",
+        "targetDescription": "Enter invalid quantity (e.g., 0 or 9999)",
+        "locatorHint": "input[name='quantity']",
+        "value": "0"
+      },
+      {
+        "id": "step8",
+        "action": "tap",
+        "targetDescription": "Click update button",
+        "locatorHint": "input[name='update-cart-button']"
+      },
+      {
+        "id": "step9",
+        "action": "assertVisible",
+        "targetDescription": "Check for quantity error message",
+        "locatorHint": "div.a-alert-content"
+      }
+    ],
+    "tags": [
+      "@negative",
+      "@regression"
+    ]
+  }
+}

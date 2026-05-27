@@ -1,0 +1,56 @@
+{
+  "id": "verify-cart-contents",
+  "testPlanId": "43cdefd4-7b01-482f-8cc2-58a703c3d430",
+  "requirementId": "4eb80c5c-67e3-476f-84bb-f0f87c047b29",
+  "suiteName": "shubham-amazon-smoke",
+  "case": {
+    "id": "verify-cart-contents",
+    "title": "Verify product is present in cart and can be updated or removed",
+    "priority": "P0",
+    "platforms": [
+      "chrome",
+      "firefox",
+      "safari",
+      "edge"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "step-1",
+        "action": "openUrl",
+        "targetDescription": "Navigate to Amazon India homepage",
+        "value": "https://www.amazon.in/"
+      },
+      {
+        "id": "step-2",
+        "action": "tap",
+        "targetDescription": "Click cart icon",
+        "locatorHint": "id=nav-cart"
+      },
+      {
+        "id": "step-3",
+        "action": "assertContainsText",
+        "targetDescription": "Verify product name in cart",
+        "locatorHint": "css=.sc-list-item-content",
+        "value": "samsung s26 ultra"
+      },
+      {
+        "id": "step-4",
+        "action": "tap",
+        "targetDescription": "Click quantity dropdown",
+        "locatorHint": "name=quantity"
+      },
+      {
+        "id": "step-5",
+        "action": "selectOption",
+        "targetDescription": "Select quantity 1",
+        "locatorHint": "name=quantity",
+        "value": "1"
+      }
+    ],
+    "tags": [
+      "@smoke",
+      "@regression"
+    ]
+  }
+}
