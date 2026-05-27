@@ -1,0 +1,72 @@
+{
+  "id": "cart-update-quantity",
+  "testPlanId": "a379c382-ed2f-42f1-a472-81540563fdd3",
+  "requirementId": "4eb80c5c-67e3-476f-84bb-f0f87c047b29",
+  "suiteName": "shubham-amazon-e2e",
+  "case": {
+    "id": "cart-update-quantity",
+    "title": "User can update product quantity in cart",
+    "priority": "P1",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "step1",
+        "action": "openUrl",
+        "targetDescription": "Open Amazon India homepage",
+        "value": "https://www.amazon.in/"
+      },
+      {
+        "id": "step2",
+        "action": "fill",
+        "targetDescription": "Enter product name in search bar",
+        "locatorHint": "id=twotabsearchtextbox",
+        "value": "samsung s26 ultra"
+      },
+      {
+        "id": "step3",
+        "action": "tap",
+        "targetDescription": "Click search button",
+        "locatorHint": "id=nav-search-submit-button"
+      },
+      {
+        "id": "step4",
+        "action": "tap",
+        "targetDescription": "Click first product in results",
+        "locatorHint": "data-component-type=s-search-result"
+      },
+      {
+        "id": "step5",
+        "action": "tap",
+        "targetDescription": "Click Add to Cart button",
+        "locatorHint": "id=add-to-cart-button"
+      },
+      {
+        "id": "step6",
+        "action": "tap",
+        "targetDescription": "Go to cart page",
+        "locatorHint": "id=nav-cart"
+      },
+      {
+        "id": "step7",
+        "action": "selectOption",
+        "targetDescription": "Update quantity to 2",
+        "locatorHint": "name=quantity",
+        "value": "2"
+      },
+      {
+        "id": "step8",
+        "action": "assertValue",
+        "targetDescription": "Quantity is updated in cart",
+        "locatorHint": "name=quantity",
+        "assertion": "2"
+      }
+    ],
+    "tags": [
+      "@e2e",
+      "@regression"
+    ]
+  }
+}
