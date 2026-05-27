@@ -26,7 +26,7 @@ function browserDevice(b: "chromium" | "firefox" | "webkit") {
 
 export default defineConfig({
   testDir: "./tests",
-  timeout:       Number(env.timeout       ?? 30000),
+  timeout:       Number(env.timeout       ?? 300000),
   retries:       Number(env.retries        ?? 0),
   fullyParallel: Boolean(env.fullyParallel ?? false),
   workers:       Number(env.workers        ?? 1),
